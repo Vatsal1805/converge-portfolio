@@ -3,24 +3,29 @@
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { GLSLHills } from "@/components/ui/glsl-hills";
+import { useIsMobile } from "@/lib/hooks/use-is-mobile";
 
 /* ── Animation helper ── */
 const ease = [0.22, 1, 0.36, 1];
 
-const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 24 },
+const fadeUp = (delay = 0, isMobile = false) => ({
+  initial: {
+    opacity: isMobile ? 1 : 0,
+    y: isMobile ? 0 : 24
+  },
   animate: { opacity: 1, y: 0 },
   transition: {
-    duration: 0.6,
-    delay,
+    duration: isMobile ? 0 : 0.6,
+    delay: isMobile ? 0 : delay,
     ease,
   },
 });
 
 export function Hero() {
+  const isMobile = useIsMobile();
   const { scrollY } = useScroll();
-  const heroOpacity = useTransform(scrollY, [0, 400], [1, 0]);
-  const heroY = useTransform(scrollY, [0, 400], [0, -60]);
+  const heroOpacity = useTransform(scrollY, [0, 400], isMobile ? [1, 1] : [1, 0]);
+  const heroY = useTransform(scrollY, [0, 400], isMobile ? [0, 0] : [0, -60]);
 
   return (
     <section
@@ -42,7 +47,7 @@ export function Hero() {
       >
         <motion.h1
           className="text-[clamp(3rem,6.5vw,5.5rem)] font-bold leading-[1.04] tracking-[-0.035em] text-white mb-7 w-full"
-          {...fadeUp(0.1)}
+          {...fadeUp(0.1, isMobile)}
         >
           We Build Web Products
           <br />
@@ -51,7 +56,7 @@ export function Hero() {
 
         <motion.p
           className="text-[17px] md:text-lg text-white/60 leading-[1.75] max-w-[480px] mb-14"
-          {...fadeUp(0.24)}
+          {...fadeUp(0.24, isMobile)}
         >
           From MVP to full-scale platforms, we design and engineer reliable web
           applications for modern startups.
@@ -59,11 +64,11 @@ export function Hero() {
 
         <motion.div
           className="flex items-center justify-center gap-8 flex-wrap"
-          {...fadeUp(0.38)}
+          {...fadeUp(0.38, isMobile)}
         >
           <Link
             href="/contact"
-            className="inline-flex items-center px-8 py-3 bg-white text-[#0B0F14] text-base font-semibold rounded-lg hover:opacity-90 active:scale-[0.97] transition-all duration-200"
+            className="px-8 py-3.5 bg-white text-[#0c0c0b] text-sm font-bold rounded-full hover:bg-white/90 transition-all active:scale-[0.97]"
           >
             Start a Project
           </Link>

@@ -34,7 +34,7 @@ const StickyTabs: React.FC<StickyTabsProps> & {
   mainNavHeight = "6em",
   rootClassName = "bg-black text-white",
   navSpacerClassName = "border-b border-white/15 bg-black",
-  sectionClassName = "bg-[#131313]",
+  sectionClassName = "bg-[#0c0c0b]",
   stickyHeaderContainerClassName = "shadow-lg",
   headerContentWrapperClassName = "border-b border-t border-white/15 bg-black",
   headerContentLayoutClassName = "mx-auto max-w-7xl px-4 py-5 sm:px-6 lg:px-8",

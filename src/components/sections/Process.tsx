@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useIsMobile } from "@/lib/hooks/use-is-mobile";
 
 /* ── Process steps data ── */
 const steps = [
@@ -33,15 +34,23 @@ const steps = [
 
 /* ── Animation Variants ── */
 const ease = [0.22, 1, 0.36, 1];
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0 },
-};
+const getFadeUp = (isMobile = false) => ({
+  hidden: {
+    opacity: isMobile ? 1 : 0,
+    y: isMobile ? 0 : 24
+  },
+  visible: {
+    opacity: 1,
+    y: 0
+  },
+});
 
 /* ══════════════════════════════════════
    PROCESS PREVIEW SECTION
 ══════════════════════════════════════ */
 export function Process() {
+  const isMobile = useIsMobile();
+  const fadeUp = getFadeUp(isMobile);
   return (
     <section
       id="process"
@@ -55,7 +64,11 @@ export function Process() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, ease, delay: 0 }}
+            transition={{
+              duration: isMobile ? 0 : 0.6,
+              ease,
+              delay: 0
+            }}
           >
             <span className="text-[11px] font-mono font-medium tracking-[0.2em] uppercase text-white/45">
               How We Work
@@ -67,7 +80,11 @@ export function Process() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, ease, delay: 0.08 }}
+            transition={{
+              duration: isMobile ? 0 : 0.6,
+              ease,
+              delay: isMobile ? 0 : 0.08
+            }}
             className="text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-[-0.03em] leading-[1.1] text-white"
           >
             Structured to reduce uncertainty.
@@ -80,7 +97,11 @@ export function Process() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, ease, delay: 0.16 }}
+            transition={{
+              duration: isMobile ? 0 : 0.6,
+              ease,
+              delay: isMobile ? 0 : 0.16
+            }}
             className="text-white/45 leading-[1.7] max-w-[640px]"
           >
             Our process is designed to eliminate the guesswork from product development.
@@ -101,7 +122,11 @@ export function Process() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.6, ease, delay: 0.22 + i * 0.08 }}
+                transition={{
+                  duration: isMobile ? 0 : 0.6,
+                  ease,
+                  delay: isMobile ? 0 : 0.22 + i * 0.08
+                }}
                 className="relative px-8 lg:px-10 py-10"
               >
                 <div className="flex items-start gap-5 md:gap-6">
@@ -131,7 +156,11 @@ export function Process() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6, ease, delay: 0.54 }}
+          transition={{
+            duration: isMobile ? 0 : 0.6,
+            ease,
+            delay: isMobile ? 0 : 0.54
+          }}
           className="mt-16 text-center"
         >
           <Link

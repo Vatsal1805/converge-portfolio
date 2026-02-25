@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
@@ -35,7 +37,7 @@ const GLSLHills = ({
                 alpha: true,
             });
         } catch {
-            return; // WebGL unavailable — static #0B0F14 bg from CSS shows through
+            return; // WebGL unavailable — static #0c0c0b bg from CSS shows through
         }
 
         // Performance: cap pixel ratio
@@ -167,7 +169,9 @@ const GLSLHills = ({
 
         // Init
         renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setClearColor(0x000000, 0);
+        if (renderer && renderer.domElement) {
+            renderer.setClearColor(0x0c0c0b, 1)
+        }
         camera.position.set(0, 16, cameraZ);
         camera.lookAt(new THREE.Vector3(0, 28, 0));
         scene.add(mesh);

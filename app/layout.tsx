@@ -34,7 +34,7 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en" className={`${displayFont.variable} ${bodyFont.variable} ${mono.variable}`}>
-            <body className="bg-[#0B0F14] text-white">
+            <body className="bg-[#0c0c0b] text-white">
                 <Navbar />
                 <main>{children}</main>
                 <Footer />

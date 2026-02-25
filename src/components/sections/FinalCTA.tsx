@@ -3,17 +3,27 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 
+import { useIsMobile } from "@/lib/hooks/use-is-mobile";
+
 /* ── Animation Variants ── */
 const ease = [0.22, 1, 0.36, 1];
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0 },
-};
+const getFadeUp = (isMobile = false) => ({
+  hidden: {
+    opacity: isMobile ? 1 : 0,
+    y: isMobile ? 0 : 24
+  },
+  visible: {
+    opacity: 1,
+    y: 0
+  },
+});
 
 /* ══════════════════════════════════════
    CONTACT CTA SECTION
 ══════════════════════════════════════ */
 export function FinalCTA() {
+  const isMobile = useIsMobile();
+  const fadeUp = getFadeUp(isMobile);
   return (
     <section
       id="contact"
@@ -26,7 +36,11 @@ export function FinalCTA() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6, ease, delay: 0 }}
+          transition={{
+            duration: isMobile ? 0 : 0.6,
+            ease,
+            delay: 0
+          }}
           className="flex items-center gap-2.5 mb-10"
         >
           <div className="relative flex h-2 w-2">
@@ -44,7 +58,11 @@ export function FinalCTA() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6, ease, delay: 0.08 }}
+          transition={{
+            duration: isMobile ? 0 : 0.6,
+            ease,
+            delay: isMobile ? 0 : 0.08
+          }}
           className="text-[clamp(2rem,4vw,3.5rem)] font-bold tracking-[-0.03em] leading-[1.1] text-white mb-6"
         >
           Have an idea worth building?
@@ -56,7 +74,11 @@ export function FinalCTA() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6, ease, delay: 0.16 }}
+          transition={{
+            duration: isMobile ? 0 : 0.6,
+            ease,
+            delay: isMobile ? 0 : 0.16
+          }}
           className="text-base md:text-lg text-white/55 max-w-[480px] leading-[1.7] mb-12"
         >
           We scope, design, and ship — so your product is live, stable, and ready to grow.
@@ -69,11 +91,15 @@ export function FinalCTA() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, ease, delay: 0.24 }}
+            transition={{
+              duration: isMobile ? 0 : 0.6,
+              ease,
+              delay: isMobile ? 0 : 0.24
+            }}
           >
             <Link
               href="/contact"
-              className="inline-flex items-center px-8 py-4 bg-white text-[#0B0F14] text-base font-bold rounded-full hover:bg-white/90 active:scale-[0.97] transition-all duration-200"
+              className="inline-flex items-center px-6 py-2.5 bg-white text-[#0c0c0b] text-[14px] font-bold rounded-full hover:bg-white/90 transition-colors active:scale-[0.97]"
               style={{ paddingLeft: "32px", paddingRight: "32px" }}
             >
               Start a Project
@@ -86,7 +112,11 @@ export function FinalCTA() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, ease, delay: 0.32 }}
+            transition={{
+              duration: isMobile ? 0 : 0.6,
+              ease,
+              delay: isMobile ? 0 : 0.32
+            }}
             className="text-[11px] font-mono uppercase tracking-[0.1em] text-white/20 mt-4 h-4"
           >
             We respond to every inquiry within 24 hours
@@ -98,7 +128,11 @@ export function FinalCTA() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, ease, delay: 0.4 }}
+            transition={{
+              duration: isMobile ? 0 : 0.6,
+              ease,
+              delay: isMobile ? 0 : 0.4
+            }}
             className="mt-4"
           >
             <p className="text-[14px] text-white/30 font-light">

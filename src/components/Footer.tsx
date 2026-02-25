@@ -18,7 +18,7 @@ export default function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr_1fr_1fr] gap-x-12 gap-y-10 md:gap-y-0">
                     {/* Column 1: Identity */}
                     <div className="flex flex-col">
-                        <Link href="/#hero" className="text-white text-[clamp(28px,4vw,48px)] font-bold tracking-tighter leading-none mb-3">
+                        <Link href="/" className="text-white text-[clamp(28px,4vw,48px)] font-bold tracking-tighter leading-none mb-3">
                             CONVERGE
                         </Link>
                         <p className="text-[15px] font-light text-white/45 leading-[1.7] max-w-[260px] mb-6">
@@ -65,8 +65,9 @@ export default function Footer() {
                         <div className="flex flex-col gap-2">
                             {[
                                 { name: "About", url: "/about" },
-                                { name: "Case Studies", url: "/#work" },
+                                { name: "Work", url: "/work" },
                                 { name: "Process", url: "/process" },
+                                { name: "Contact", url: "/contact" },
                             ].map((link) => (
                                 <Link
                                     key={link.name}
@@ -89,10 +90,10 @@ export default function Footer() {
                                 Dhaka, Bangladesh
                             </span>
                             <a
-                                href="mailto:contact@converge.digital"
+                                href="mailto:contact@convergedigital.com"
                                 className="text-[14px] font-light text-white/55 leading-[2] hover:text-white/90 transition-colors duration-200"
                             >
-                                contact@converge.digital
+                                contact@convergedigital.com
                             </a>
                         </div>
                         <div className="mt-5 flex items-center gap-2.5">

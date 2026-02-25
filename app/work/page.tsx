@@ -23,6 +23,8 @@ export default function WorkPage() {
         // Start header animations on mount
         controls.start("visible")
 
+        if (isMobile) return;
+
         // Intersection Observer for the scroll counter
         const observers = cardRefs.current.map((ref, index) => {
             const observer = new IntersectionObserver(
@@ -38,7 +40,7 @@ export default function WorkPage() {
         })
 
         return () => observers.forEach(o => o.disconnect())
-    }, [controls])
+    }, [controls, isMobile])
 
     const fadeUp = {
         hidden: { opacity: 0, y: 30 },

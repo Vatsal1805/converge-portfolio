@@ -2,9 +2,9 @@
 
 @theme {
     /* Palette */
-    --color-bg-base: #0B0F14;
-    --color-bg-surface: #111317;
-    --color-bg-raised: #161B22;
+    --color-bg-base: #0c0c0b;
+    --color-bg-surface: #0c0c0b;
+    --color-bg-raised: #0c0c0b;
     --color-primary: #F0F0F0;
     --color-secondary: rgba(240, 240, 240, 0.65);
     --color-muted: rgba(240, 240, 240, 0.35);
@@ -37,7 +37,7 @@
 
     body {
         font-family: var(--font-body), ui-sans-serif, system-ui, -apple-system, sans-serif;
-        background-color: #0B0F14;
+        background-color: #0c0c0b;
         color: #F0F0F0;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
@@ -50,7 +50,7 @@
     }
 
     ::-webkit-scrollbar-track {
-        background: #0B0F14;
+        background: #0c0c0b;
     }
 
     ::-webkit-scrollbar-thumb {
@@ -63,4 +63,31 @@
         background: rgba(255, 255, 255, 0.12);
         color: #fff;
     }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Override native select appearance */
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+/* Fix Chrome autofill yellow background */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px #0c0c0b inset !important;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.9) !important;
+    caret-color: white;
 }

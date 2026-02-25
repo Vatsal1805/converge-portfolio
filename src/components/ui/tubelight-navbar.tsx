@@ -121,9 +121,8 @@ export function NavBar({ items, className }: NavBarProps) {
 
                 {/* CTA */}
                 <Link
-                    href="/#contact"
-                    onClick={(e: React.MouseEvent<HTMLAnchorElement>) => handleNavClick(e, "/#contact")}
-                    className="hidden md:inline-flex items-center px-6 py-2.5 bg-white text-[#0B0F14] text-[14px] font-bold rounded-full hover:bg-white/90 transition-colors active:scale-[0.97]"
+                    href="/contact"
+                    className="hidden md:inline-flex items-center px-6 py-2.5 bg-white text-[#0c0c0b] text-[14px] font-bold rounded-full hover:bg-white/90 transition-colors active:scale-[0.97]"
                 >
                     Start a Project
                 </Link>
