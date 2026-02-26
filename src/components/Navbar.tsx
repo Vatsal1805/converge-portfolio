@@ -58,6 +58,7 @@ export default function Navbar() {
                         : '1px solid transparent',
                     backdropFilter: solidNav ? 'blur(12px)' : 'none',
                     WebkitBackdropFilter: solidNav ? 'blur(12px)' : 'none',
+                    zIndex: 999,
                 }}
             >
                 <div

@@ -1,8 +1,8 @@
 "use client";
 
+import { PageWrapper } from "@/components/PageWrapper";
 import { useEffect } from "react";
 import { useAnimation } from "framer-motion";
-import { Breadcrumb } from "@/components/Breadcrumb";
 import { ContactSignals } from "@/components/sections/contact/ContactSignals";
 import { ContactForm } from "@/components/sections/contact/ContactForm";
 
@@ -20,20 +20,16 @@ export default function ContactPage() {
     }, [controls]);
 
     return (
-        <main className="min-h-screen bg-[#0c0c0b] text-white pt-[140px] pb-[120px] px-[clamp(24px,5vw,80px)]">
-            <div className="max-w-[1200px] mx-auto">
-                <div className="mb-16">
-                    <Breadcrumb items={[
-                        { label: 'Home', href: '/' },
-                        { label: 'Start a Project' }
-                    ]} />
-                </div>
-
+        <PageWrapper breadcrumbs={[
+            { label: 'Home', href: '/' },
+            { label: 'Start a Project' }
+        ]}>
+            <div className="pb-[120px]">
                 <div className="grid grid-cols-1 lg:grid-cols-[45%_55%] gap-[80px]">
                     <ContactSignals controls={controls} />
                     <ContactForm />
                 </div>
             </div>
-        </main>
+        </PageWrapper>
     );
 }

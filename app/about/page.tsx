@@ -1,6 +1,6 @@
 "use client";
 
-import { Breadcrumb } from "@/components/Breadcrumb";
+import { PageWrapper } from "@/components/PageWrapper";
 import { useIsMobile } from "@/lib/hooks/use-is-mobile";
 import { AboutHero } from "@/components/sections/about/AboutHero";
 import { AboutOrigin } from "@/components/sections/about/AboutOrigin";
@@ -55,19 +55,14 @@ export default function About() {
     }
 
     return (
-        <div className="w-full bg-[#0c0c0b] selection:bg-white selection:text-black">
+        <PageWrapper breadcrumbs={[
+            { label: 'Home', href: '/' },
+            { label: 'About' }
+        ]}>
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
             />
-
-            {/* BREADCRUMBS */}
-            <div className="pt-32 max-w-[1200px] mx-auto px-[clamp(24px,5vw,80px)]">
-                <Breadcrumb items={[
-                    { label: 'Home', href: '/' },
-                    { label: 'About' }
-                ]} />
-            </div>
 
             <AboutHero fadeUp={fadeUp} />
             <AboutOrigin fadeUp={fadeUp} />
@@ -75,6 +70,6 @@ export default function About() {
             <AboutOperate fadeUp={fadeUp} />
             <AboutStats fadeUp={fadeUp} />
             <AboutCTA fadeUp={fadeUp} />
-        </div>
+        </PageWrapper>
     );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { Breadcrumb } from "@/components/Breadcrumb";
+import { PageWrapper } from "@/components/PageWrapper";
 import { useIsMobile } from "@/lib/hooks/use-is-mobile";
 import { ProcessHero } from "@/components/sections/process/ProcessHero";
 import { ProcessSteps } from "@/components/sections/process/ProcessSteps";
@@ -36,7 +36,10 @@ export default function Process() {
     }
 
     return (
-        <div className="relative w-full flex flex-col bg-[#0c0c0b]">
+        <PageWrapper breadcrumbs={[
+            { label: 'Home', href: '/' },
+            { label: 'Process' }
+        ]}>
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
@@ -50,18 +53,10 @@ export default function Process() {
                 }}
             />
 
-            {/* BREADCRUMBS */}
-            <div className="pt-32 max-w-[1200px] px-[clamp(24px,5vw,80px)] relative z-50">
-                <Breadcrumb items={[
-                    { label: 'Home', href: '/' },
-                    { label: 'Process' }
-                ]} />
-            </div>
-
             <ProcessHero isMobile={isMobile} />
             <ProcessSteps />
             <ProcessReinforcement />
             <ProcessCTA />
-        </div>
+        </PageWrapper>
     );
 }

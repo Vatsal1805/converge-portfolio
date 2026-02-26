@@ -55,7 +55,7 @@ export default function CaseStudyTemplate({ project, nextProject, prevProject }:
             <div className="max-w-[1200px] mx-auto px-[clamp(24px,5vw,80px)]">
 
                 {/* BREADCRUMBS */}
-                <div className="pt-32 pb-8">
+                <div className="pt-24 pb-8">
                     <Breadcrumb items={[
                         { label: 'Home', href: '/' },
                         { label: 'Work', href: '/work' },
