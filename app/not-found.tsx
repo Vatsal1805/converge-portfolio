@@ -23,7 +23,7 @@ export default function NotFound() {
                 color: 'white',
                 fontWeight: '400'
             }}>
-                This page doesn't exist.
+                {"This page doesn't exist."}
             </h1>
             <a href="/" style={{
                 color: 'rgba(255,255,255,0.5)',
