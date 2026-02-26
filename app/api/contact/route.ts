@@ -6,75 +6,75 @@ import { NextRequest, NextResponse } from 'next/server'
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>()
 
 function isRateLimited(ip: string): boolean {
-    const now = Date.now()
-    const limit = rateLimitMap.get(ip)
+  const now = Date.now()
+  const limit = rateLimitMap.get(ip)
 
-    if (!limit || now > limit.resetTime) {
-        rateLimitMap.set(ip, {
-            count: 1,
-            resetTime: now + 60 * 60 * 1000 // 1 hour
-        })
-        return false
-    }
-
-    if (limit.count >= 3) return true
-
-    limit.count++
+  if (!limit || now > limit.resetTime) {
+    rateLimitMap.set(ip, {
+      count: 1,
+      resetTime: now + 60 * 60 * 1000 // 1 hour
+    })
     return false
+  }
+
+  if (limit.count >= 3) return true
+
+  limit.count++
+  return false
 }
 
 export async function POST(req: NextRequest) {
-    try {
-        const ip = req.headers.get('x-forwarded-for') ?? 'unknown'
-        if (isRateLimited(ip)) {
-            return NextResponse.json(
-                { error: 'Too many requests. Please try again later.' },
-                { status: 429 }
-            )
-        }
+  try {
+    const ip = req.headers.get('x-forwarded-for') ?? 'unknown'
+    if (isRateLimited(ip)) {
+      return NextResponse.json(
+        { error: 'Too many requests. Please try again later.' },
+        { status: 429 }
+      )
+    }
 
-        if (!process.env.RESEND_API_KEY) {
-            console.error('RESEND_API_KEY is missing');
-            return NextResponse.json(
-                { error: 'Email service not configured' },
-                { status: 500 }
-            )
-        }
+    if (!process.env.RESEND_API_KEY) {
+      console.error('RESEND_API_KEY is missing');
+      return NextResponse.json(
+        { error: 'Email service not configured' },
+        { status: 500 }
+      )
+    }
 
-        const resend = new Resend(process.env.RESEND_API_KEY)
-        const body = await req.json()
-        const { name, email, company, budget,
-            projectType, message, website } = body
+    const resend = new Resend(process.env.RESEND_API_KEY)
+    const body = await req.json()
+    const { name, email, company, budget,
+      projectType, message, website } = body
 
-        // Honeypot check
-        if (website) {
-            // Bot filled the honeypot — silently succeed
-            return NextResponse.json({ success: true }, { status: 200 })
-        }
+    // Honeypot check
+    if (website) {
+      // Bot filled the honeypot — silently succeed
+      return NextResponse.json({ success: true }, { status: 200 })
+    }
 
-        // Validate required fields
-        if (!name || !email || !message) {
-            return NextResponse.json(
-                { error: 'Name, email and message are required' },
-                { status: 400 }
-            )
-        }
+    // Validate required fields
+    if (!name || !email || !message) {
+      return NextResponse.json(
+        { error: 'Name, email and message are required' },
+        { status: 400 }
+      )
+    }
 
-        // Validate email format
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-        if (!emailRegex.test(email)) {
-            return NextResponse.json(
-                { error: 'Invalid email address' },
-                { status: 400 }
-            )
-        }
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(email)) {
+      return NextResponse.json(
+        { error: 'Invalid email address' },
+        { status: 400 }
+      )
+    }
 
-        await resend.emails.send({
-            from: 'Converge Contact <contact@yourverifieddomain.com>',
-            to: process.env.CONTACT_EMAIL!,
-            replyTo: email,
-            subject: `New inquiry from ${name} — ${projectType || 'General'}`,
-            html: `
+    await resend.emails.send({
+      from: 'Converge Contact <contact@yourverifieddomain.com>',
+      to: process.env.CONTACT_EMAIL!,
+      replyTo: email,
+      subject: `New inquiry from ${name} — ${projectType || 'General'}`,
+      html: `
         <div style="font-family: monospace; background: #0c0c0b; 
                     color: #ffffff; padding: 40px; 
                     max-width: 600px;">
@@ -161,14 +161,14 @@ export async function POST(req: NextRequest) {
           </div>
         </div>
       `,
-        })
+    })
 
-        // Send auto-reply to client
-        await resend.emails.send({
-            from: 'Raunak at Converge <contact@yourverifieddomain.com>',
-            to: email,
-            subject: `Got your message — Converge Digital`,
-            html: `
+    // Send auto-reply to client
+    await resend.emails.send({
+      from: 'Raunak at Converge <contact@yourverifieddomain.com>',
+      to: email,
+      subject: `Got your message — Converge Digital`,
+      html: `
         <div style="font-family: monospace; background: #0c0c0b; 
                     color: #ffffff; padding: 40px; 
                     max-width: 600px;">
@@ -205,23 +205,25 @@ export async function POST(req: NextRequest) {
             </span>
           </p>
 
-          <div style="margin-top: 40 Dhaka, Bangladesh
+          <div style="margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.07);">
+            <p style="color: rgba(255,255,255,0.3); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em;">
+              Sent from Converge Digital contact form
             </p>
           </div>
         </div>
       `,
-        })
+    })
 
-        return NextResponse.json(
-            { success: true },
-            { status: 200 }
-        )
+    return NextResponse.json(
+      { success: true },
+      { status: 200 }
+    )
 
-    } catch (error) {
-        console.error('Contact form error:', error)
-        return NextResponse.json(
-            { error: 'Failed to send message. Please try again.' },
-            { status: 500 }
-        )
-    }
+  } catch (error) {
+    console.error('Contact form error:', error)
+    return NextResponse.json(
+      { error: 'Failed to send message. Please try again.' },
+      { status: 500 }
+    )
+  }
 }
