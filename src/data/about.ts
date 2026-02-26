@@ -2,7 +2,7 @@ export const ABOUT_DATA = {
     founder: {
         name: "Somil Shekhar",
         initials: "SS",
-        role: "Founder, Converge Digital",
+        role: "Founder, Converge Digitals",
         year: "2023",
         experience: "8"
     },

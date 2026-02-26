@@ -156,7 +156,7 @@ export async function POST(req: NextRequest) {
                       border-top: 1px solid rgba(255,255,255,0.07);">
             <p style="color: rgba(255,255,255,0.3); font-size: 11px; 
                        text-transform: uppercase; letter-spacing: 0.1em;">
-              Sent from Converge Digital contact form
+              Sent from Converge Digitals contact form
             </p>
           </div>
         </div>
@@ -167,7 +167,7 @@ export async function POST(req: NextRequest) {
     await resend.emails.send({
       from: 'Raunak at Converge <contact@yourverifieddomain.com>',
       to: email,
-      subject: `Got your message — Converge Digital`,
+      subject: `Got your message — Converge Digitals`,
       html: `
         <div style="font-family: monospace; background: #0c0c0b; 
                     color: #ffffff; padding: 40px; 
@@ -201,13 +201,13 @@ export async function POST(req: NextRequest) {
                      line-height: 1.8;">
             — Raunak<br>
             <span style="color: rgba(255,255,255,0.35);">
-              Founder, Converge Digital
+              Founder, Converge Digitals
             </span>
           </p>
 
           <div style="margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.07);">
             <p style="color: rgba(255,255,255,0.3); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em;">
-              Sent from Converge Digital contact form
+              Sent from Converge Digitals contact form
             </p>
           </div>
         </div>

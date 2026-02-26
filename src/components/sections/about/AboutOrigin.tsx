@@ -45,8 +45,8 @@ export function AboutOrigin({ fadeUp }: { fadeUp: (delay: number) => any }) {
                             tasks. It was to create real impact.
                         </motion.p>
                         <motion.p {...fadeUp(0.32)} className="text-[16px] text-white/60 font-light leading-[1.85]">
-                            Converge was founded in {founder.year} in Dhaka,
-                            Bangladesh with a simple conviction — that technology,
+                            Converge was founded in {founder.year} in Jharkhand,
+                            India with a simple conviction — that technology,
                             creativity, and strategy belong together. The name
                             Converge comes from exactly that: the meeting point
                             of technical precision and business thinking. Every

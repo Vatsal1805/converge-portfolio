@@ -87,7 +87,7 @@ export default function Footer() {
                         </h4>
                         <div className="flex flex-col">
                             <span className="text-[14px] font-light text-white/55 leading-[2]">
-                                Dhaka, Bangladesh
+                                Jharkhand, India
                             </span>
                             <a
                                 href="mailto:contact@convergedigital.com"
@@ -108,7 +108,7 @@ export default function Footer() {
                 {/* Bottom Bar */}
                 <div className="mt-[60px] pt-6 border-t border-white/[0.07] flex flex-col md:flex-row items-center justify-between gap-4">
                     <p className="text-[13px] font-light text-white/25">
-                        © 2026 Converge Digital. All rights reserved.
+                        © 2026 Converge Digitals. All rights reserved.
                     </p>
                     <p className="text-[13px] font-light text-white/20 italic">
                         Designed with intention. Built for scale.

@@ -12,10 +12,10 @@ export async function generateMetadata({
     if (!project) return {}
 
     return {
-        title: `${project.name} — Converge Digital`,
+        title: `${project.name} — Converge Digitals`,
         description: project.problem.headline,
         openGraph: {
-            title: `${project.name} — Converge Digital`,
+            title: `${project.name} — Converge Digitals`,
             description: project.problem.headline,
             type: 'article',
         },

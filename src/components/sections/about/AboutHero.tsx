@@ -13,7 +13,7 @@ export function AboutHero({ fadeUp }: { fadeUp: (delay: number) => any }) {
                         {...fadeUp(0)}
                         className="font-mono text-[11px] uppercase tracking-[0.15em] text-white/35 mb-6"
                     >
-                        About Converge Digital
+                        About Converge Digitals
                     </motion.span>
                     <motion.h1
                         {...fadeUp(0.08)}

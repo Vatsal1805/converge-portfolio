@@ -23,7 +23,7 @@ const mono = DM_Mono({
 })
 
 export const metadata: Metadata = {
-    title: 'Converge Digital — Digital Product Studio',
+    title: 'Converge Digitals — Digital Product Studio',
     description: 'We design and engineer digital products built to grow with your business.',
 }
 
